@@ -2,12 +2,35 @@ name: Stockwatch Cron Job
 
 on:
   schedule:
-    - cron: "*/1 * * * *" # Runs every minute
+    - cron: "*/3 * * * *" # Runs every 3 minutes
 
 jobs:
-  cron-job:
+  run-every-3-minutes-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run a script
-        run: echo "This job runs every day at midnight"
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up counter file if not exists
+        run: |
+          if [ ! -f counter.txt ]; then
+            echo 0 > counter.txt
+          fi
+
+      - name: Increment counter
+        run: |
+          count=$(cat counter.txt)
+          count=$((count + 1))
+          echo $count > counter.txt
+          echo "Current count: $count"
+
+      - name: Commit and push counter update
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add counter.txt
+          git commit -m "Increment counter to $count"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
