@@ -1,0 +1,13 @@
+name: Stockwatch Cron Job
+
+on:
+  schedule:
+    - cron: "*/1 * * * *" # Runs every minute
+
+jobs:
+  cron-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run a script
+        run: echo "This job runs every day at midnight"
