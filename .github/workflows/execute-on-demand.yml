@@ -14,5 +14,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Make the script executable
+        run: chmod +x get_stock_prices.sh
+
       - name: Run get_stock_prices.sh
         run: ./get_stock_prices.sh
