@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  run-every-5-minutes-job:
+  run-stockwatch-cron-job:
     runs-on: ubuntu-latest
 
     steps:
