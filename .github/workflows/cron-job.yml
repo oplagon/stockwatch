@@ -15,6 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Run get_stock_prices.sh
+        run: ./get_stock_prices.sh
+
       - name: Set up counter file if not exists
         run: |
           if [ ! -f counter.txt ]; then
@@ -33,6 +36,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add counter.txt
+          git add stock_prices.json
           git commit -m "Increment counter to $count"
           git push
         env:
