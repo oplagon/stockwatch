@@ -2,10 +2,13 @@ name: Stockwatch Cron Job
 
 on:
   schedule:
-    - cron: "*/3 * * * *" # Runs every 3 minutes
+    - cron: "*/15 * * * *" # Runs every 15 minutes
+
+permissions:
+  contents: write
 
 jobs:
-  run-every-3-minutes-job:
+  run-every-5-minutes-job:
     runs-on: ubuntu-latest
 
     steps:
