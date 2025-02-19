@@ -1,0 +1,14 @@
+name: Run on Push
+
+on:
+  push:
+    branches:
+      - main  # Specify the branch you want to trigger the workflow on push
+
+jobs:
+  run-on-push-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run a script
+        run: echo "This job runs once on push to the main branch"
